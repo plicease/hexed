@@ -1,0 +1,83 @@
+MOVING FILE INDEX (current byte) AND HELP WINDOW
+ Use The left and right keys to move file from left to right.
+ HOME to go to begining, END to get to the EOF marker.
+ PGUP and PGDN to move left or right one screen worth of data.
+ Use The  and  keys to view the help window.
+ * chage view location                                            (S)
+
+VARIABLE MODIFICATION
+ E to change default data entry (Hex/Decimal)                     (N)
+ H to modify current element in hex ($00-$FF) or decimal (0-255)  (N)
+ G to modify current element in char form                         (N)
+ W to modify current bytes as an 2 byte integer                   (N) 
+ L to modify current bytes as a 4 byte integer                    (N)
+ B to edit an individual byte at the bit level                    (N)
+ F2 overwrite a string                                            (N)
+
+FILE COMMANDS
+ R to rename file                                                 (A)
+ Q to quit to DOS                                                 (N)
+^F2 DOS shell                                                     (N)
+ +/- to move EOF marker                                           (A)
+ = to set EOF to current element                                  (A)
+ F5 save image to disk as current file name                       (A)
+ F7 restore current segment, undo recent changes                  (N)
+ F9 load new file in to the primary file slot
+ F10 load new file in to the secondary file slot
+^F9 load new file in to the primary file slot from FLIN
+^F10 load new file in to the secondary file slot from FLIN
+
+INSERTION AND DELETION
+ I to insert a number of bytes in to current position             (L)
+ 1..9 insert # of bytes=input; 0 insert 10 bytes                  (L)
+ <Insert> to insert one byte=0                                    (L)
+ <Delete> to delete one byte                                      (L)
+
+SEARCH
+ S to search for a text string                                    (+)
+^S to search for the last text string searched for                (+)
+ F to find an array of byte in the file in memory                 (+)
+^F to find an array (already entered in) of byte in the file      (+)
+
+SECONDARY FILE
+ A to load a secondary file at the same time (toggles)            (N)
+ P to freze the secondary file in place (toggles)                 (N)
+ D to find the first difference between the two file              (S)
+ X extract a section of the file to overwrite in the second file  (N)
+ <Enter> to swap secondary and main files                         (N)
+
+VARIABLE VIEW
+ T display current bytes as other variable types                  (N)
+ P display current bytes as other variable types constantly       (N)
+ F6 secondary view mode                                           (N)
+
+INFORMATION/DEBUGING
+ O display memory information     F1 info on HEXED (credits)      (N)
+^L Repaint display                                                (N)
+
+FORMATED FILE VIEW
+ V view a formated file           < and > change format type      (N)
+^V view a formated graphics file using last graphics mode         (N)
+
+BLOCK/FILE COMMANDS ^K first then ....
+ A save as (or ^F5)               C copy text                     (A)
+ D done (save and quit)           S save file                     (A)
+ V move block                     Y delete block                  (A)
+ R read block from a file                                         (A)
+ B begin marking block            H hide marking                  (N)
+ K end marking block              Q quit without saving           (N)
+ W write block to a file          P print hardcopy data           (N)
+
+OTHER
+ / repeat comands x # of times
+ spacebar to change number of rows to be viewed                   (N)
+^C color configeration                                            (N)
+
+SAVE CODES
+ (A) always saves
+ (N) never saves
+ (L) only saves on files larger than one segment $FFFF
+ (S) only when command is active on a segment other than the current
+     larger than one segment only
+ (+) only on files larger than one segment $FFFF if command is successful
+

@@ -1,0 +1,99 @@
+HEXED is (c) 1994, 1997 Graham THE Ollis.
+
+legal stuff
+-----------
+
+HEXED source code and binaries may be used, modified and distributed free
+of cost so long as you keep my comments at the beginning of this file and
+distribute this README with the distribution.  IF YOU DO MAKE CHANGES and
+distribute changed versions it would be nice if you documented these
+changes and a contact point in the source code and/or this README file. 
+
+what is hexed?
+--------------
+
+hexed was born one day when i needed to do some obscecure task with a
+binary file.  for the life of me i can't remember.  for quite a while i
+got it working better (in my opinion) than any binary file editor ever.
+it does take a little practice, and if your not careful, you can burn
+yourself.  HEXED FOR THE MOST PART MODIFIES BINARY FILES DIRECTLY.  so if
+your not real sure about what you are doing it's best that you back up any
+file you need to.  the save/restore functions serve well as low level
+interface to the cache and should be ignored for the most part.
+
+hexed understands a number of file formats ranging from really useful to
+really obsecure.  GIF is one of the more useful and IBK is one of the more
+obsecure for example.  they are just formats i needed from one time or
+another and added on.  hexed will identify a byte in these files and tell
+you about it.  if you don't already understand the format this function
+will likely to be useless.  it is really just an aid, not something to
+hold your hand.
+
+that sort of describes hexed in general though.  be careful you may be
+burned.  if you want to "fix" it to your liking the source code is
+available in ./src.
+
+versions of hexed
+-----------------
+
+hexed is available as a 16bit TURBO PASCAL binary only.  the binaries are
+provided so you don't need to compile hexed unless your in to that sort of
+thing.  hexed has an illustrious history which includes thousands of
+changes i can't remember 90% of them myself.
+
+ * v1.00 - original version everything you needed was there, except you 
+           needed keep the files small.  hexed loaded the entire file in
+           to memory and thus was limited by memory.
+
+ * v1.2x - somewhere around here i decided to use a buffer method to chuck
+           the old file size limitation.  now the size of the file was
+           limited only by the DOS 16bit FAT file system.  (don't get me
+           started)
+
+ * v1.58 - this version had all the bells and whistles.  supported more
+           formats that you can count on your fingers (both hands).  color
+           tables, bit field editing, insertion/deletion of binary data
+           and a whole lot more. 
+
+ * v1.60 - well now that i'm a college student i don't program in pascal
+           anymore (the few modifications i made here illustrate why too) 
+           though this program is too handy to throw away but too big to
+           port to DOS. for 1.60 i chucked the "incourage to register" 
+           mode and decided to make hexed available as free software in
+           the tradition of GNU and Linux.  other small modifications
+           include: hexed is now 0 based (instead of 1 based) like C and
+           added the new version of the frag format to the various other
+           definitions. 
+
+compiling frag
+--------------
+
+ * dos
+
+    you'll need turbo pascal of at LEAST 5.0.  you may even need a newer 
+    versions as i tested and compiled this using version 7.0.  if you are
+    running dos you shouldn't even need to compile hexed though.  binaries
+    frag.exe and unfrag.exe have been included.  put these in your path. 
+
+    unless you do some major hacking you will probably need to use tpx
+    rather than tpc.  this version of hexed is HUGE.  it's probably the
+    largest utility based program ever and seeing as how i don't really
+    enjoy pain it will probably stay that way. 
+
+    perl, linux and gnu are the wave of the future so don't expect me to
+    make any major modifications of hexed in the future.  if any one would
+    like to port this to another platform, get a lot of tylenol and stuff
+    like that because it will be a pain.  this code is very much platform
+    dependant. 
+
+contacting the author
+---------------------
+
+if you need help or are interested in the latest version of frag, you can
+e-mail me at work or school: 
+
+Graham THE Ollis <ollisg@ns.arizona.edu>
+Graham THE Ollis <ollisg@idea-bank.com>
+Graham THE Ollis <ollisg@lanl.gov>
+
+http://www.u.arizona.edu/~ollisg

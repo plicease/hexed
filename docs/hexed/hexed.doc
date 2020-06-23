@@ -1,0 +1,207 @@
+
+NAME
+     HEXED - Invoke the Graham Hexadecimal Editor
+
+SYNOPSIS
+     HEXED <file name> <secondary file name>
+     HEXED </I> <file name>
+     HEXED <file name> </I>
+     HEXED </I> </I>
+
+ODDITIES
+     No options available.
+
+DESCRIPTION
+     In this file the carrot (^) character indicates you press the ctrl key 
+and the key specified (in that order) and the release them.  For example ^G 
+means you type <ctrl> then "G" and then release them both.
+
+     HEXED lets you view and modify binary files.  The unregistered version
+is limited by the one segment buffer it uses.  Meaning that it can only load
+files that are less than 65535 ($FFFF) bytes large.  The registered version,
+available from CORE for only $15.00, uses a floating buffer that can view and
+modify files up to the theoretical max of two gigabytes.
+
+     When you are ready, go to the DOS prompt and type HEXED.  You can
+include a filename if you already know what file you want to edit or you can
+use wildcard characters (*,?) and use the HEXED file selection program to
+choose a file.  If filename specified using wildcards indicates only one file,
+that file will automatically be loaded.  Here are some examples:
+
+        C> HEXED
+        C> HEXED *.pcx
+        C> HEXED fred.dat
+
+     Then you will be either asked which file you whish to load, or be put 
+right in to HEXED view/edit mode.
+
+     If you use the /I switch as a file name, HEXED will read from standard 
+input a file name rather than asking the user for input.  Once you get in to 
+the program you can also use the ^F9 and ^F10 to load additional files from 
+a FLIN source.  The is to allow HEXED to be used with FFIND, a GUTIL that 
+comes with part A of the GUTILs (these are a collection of really great UNIX 
+like DOS programs that really increase the power of your PC -- look for 
+GUTIL11.ZIP or better).  For example if you had HEXED you could type:
+
+        C> FFIND *.pcx | HEXED /I 
+
+     To go through all the PCX files on the disk using HEXED.
+
+INTERNAL COMMANDS
+     HEXED provides a help text file at the bottom of the screen in the 
+primary view mode.  Here is a more detailed description of what each of the 
+commands should be used for.  When you are prompted for a number, HEXED 
+assumes that you are using decimal.  If you prefer hex, put a '$' character at 
+the beginning of the number (i.e. 255=$FF).  A carrot (^) before a keystroke 
+indicates that the ctrl key is hel down and then the key is pressed and then 
+both keys are released.
+
+        (PRIMARY) This mode is useful for editing two files at a time.
+
+     Movement:
+     Left and Right moves the file index (position in the file).  Home goes to 
+the beginning of the file and End goes to the end of the file.  PgUp and PgDn 
+move the file index left or right one screen.  Up and Down should be used to 
+go through the help window.  
+     * allows you to set the file index to anything within the file.  This is 
+a good way to get to a certain part of the file very quickly.  HEXED will 
+prompt you for a long integer.
+
+     Variable modification:
+     E changes the default entry.  When you modify a byte, word or long, HEXED 
+lets you play around with the number itself.  If you want it to be by default 
+decimal rather than HEX then press E right away.  You can always delete or add 
+the '$' character by hand within number edit windows.
+     H, W, and L modify the current byte word and long integer respectively.
+     F2 lets you pu a string in to the file.  This command has three modes.  
+1) Null terminated string.  At the end of the string there will be a 0 byte.  
+2) Pascal type string.  The first byte of the string is the length.  3) No 
+termination.  Just the characters in the string are put in to the file.
+     G modify the current byte.  Reads a single character from the keyboard.
+     B lets you modify a byte at the bit level.  There are two bytes displayed 
+on the bit edit mode.  The top one was the last one you edited (or 00000000 if 
+you havn't used it yet) and the bottom is the one you are editing.  Once you 
+get in to the Bit modify mode, you have a number of commands available to you: 
+
+        ENTER   set the byte at the file index to the binary value you have 
+                edited.
+        ESC     undo changes and get out of bit edit mode.
+        <,>     shift bits left or right.  Similar to the C operators << and 
+                >>.
+        SPACE   toggle the current bit.  If it is 1, it will become 0.  If it 
+                is 0 it will become 1.
+        N       does a bit wise not operation on the byte.
+        A       does a bit wise and operation on the upper and lower bytes and 
+                stores it in the lower byte.
+        O       does a bit wise or operation on the upper and lower bytes and 
+                stores it in the lower byte.
+        X       does a bit wise exclusive or operation on the upper and lower 
+                bytes and stores it in the lower byte.
+        I       increment the current byte.
+        D       decrement the current byte.
+        S       Swap the two bytes in the bit edit mode.
+
+     File commands:
+     R renames the primary file.
+     Q and ESC quits the program.  ^F2 runs a DOS shell if there is enough 
+memory.
+     The plus (+), minus (-) and equal (=) keys change the size of the file.  
+If you increase the size of the file, zeros will be added to the end. 
+     F5 saves, F7 undo's recent changes.
+     F9 and F10 are used to load files in to the primary and secondary file 
+slots (respectively).  ^F9 and ^F10 are mentioned above.
+
+     Insertion and deletion
+     I insert a number of bytes.  You will be prompted for both the number of 
+bytes and what value to insert.  HEXED will atucally move data in the file, so 
+no data is overwritten EVER with this command.  It does however directly 
+modify the file (because of the complexities of the task), so take care. 
+     1..9 inserts 1-9 bytes all set to 0.
+     Insert and Delete will insert and delete bytes from the file.  What 
+applies to the I command applies here as far as file modification.
+
+      Search:
+      S to search for a text string.  HEXED will prompt you and then search 
+the enire file using as big a buffer as possible.  This is extreamly fast, but 
+also a memory hog.  ^S search for the same string again.
+      F to search for a binary array.  HEXED will pop up with a byte array 
+editor.  Press <ENTER> to search.  ^F searches for the same array again.
+      When both commands are executed, you can press any key to get out of the 
+search.
+
+     Secondary file:
+     Just below the high status bar under the primary file slot, is space for 
+a second file.  This is called the seconadry file slot.
+     A loads a secondary file.  HEXED will use the same file choosing function 
+as when you start up HEXED at the beginning.  If a secondary file already 
+exists, A will dispose of the current one.
+     P to stop the movement of the secondary file.  Note that this does 
+something else when a secondary file is not loaded.
+     D to find the first difference in the two files.  This is a bit like the 
+BFC (GUTIL pA) or FC /B (MS DOS) commands.
+     X to extract a number of bytes from the secondary file and overwrite them 
+on the primary file.  HEXED will prompt you for necessary information.
+     ENTER will swap the two files.  Making the primary the secondary file and 
+the secondary the primary file.
+
+     Variable view:
+     P displays the current variable as othe types (WORD LONG REAL DOUBLE 
+etc.) in the secondary file slot.  Can only be used when the secondary file is 
+not loaded.
+    F6 secondary view mode.  See below.
+
+    Information/Debugin:
+    These commands all pop up a window with useful information on them:
+    O memory information.  F1 info on HEXED (credits).
+
+    Formated file view:
+    V view the formated file.  Here is a short discription of each file type:
+
+        PCX     view graph using mode $13
+        PAL/COL view palette using mode $13
+        CMF     listen to a CMF music file if the SBFMDRV driver is loaded
+                also offers some information on the file
+        SBI     displays information on the instrument
+        GIF     view graph using mode $13
+        VOC     listen to a voice sample using the soundblaster
+        IMG     look at a IMG (b/w) graph using mode $13
+        MOD31   n/a                                 
+        MOD15   n/a
+        IBK     Display the names of instruments in archive
+
+     < and > change the file type which is displayed in the lower right hand 
+corner of the screen.  HEXED will usually choose the apropriate format when 
+the file is loaded.  when displaying alternate information using the P 
+command, HEXED will usually try to identify the byte which you are on and 
+display it on the last line in the secondary file slot.
+
+     Block/file commands:
+     All of these are operated by first pressing the ^K key.  Then a window 
+will pop up and display your options.  They are designed to be compatable with 
+BORLAND compiler editors, XTGold's text editors and PCWrite.
+
+     Other odd commands:
+     / repeat commands any number of times.  First HEXED will ask you for a 
+number.  Then type the command you want repeated.
+     SPACE to change the number of lines displayed.
+
+        (SECONDARY) multi column display
+
+     The secondary mode uses most of the same commands.  You can see all the 
+commands at the bottom.  All the arrow keys are used to move the file index, 
+and TAB moves you between each numerical type.  Keep in mind that binary 
+numbers use 0 and 1 while decimal uses 0-9 and hex uses 0-9,A-F.  ^L is used 
+instead of ^F for looking for byte arrays.
+     Press and hold ctrl to see the commands that you can use that are ctrl 
+commands.
+
+OPTIONS
+     No options available.
+
+RETURN VALUES
+     Hexed does not reaturn a useful value.
+
+ENVIRONMENT
+     This program takes advantage of the GRAHAM environment variable.  Use the 
+man page program to look up GRAHAM for more info.
+
